@@ -44,7 +44,7 @@ p{margin:0}
 .eyebrow{font:500 .76rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text)}
 .lede{font-size:1.12rem;color:var(--muted);max-width:62ch}
 section{padding-block:clamp(64px,9vw,112px)}
-.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:720px}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:920px}
 .mono{font-family:var(--f-mono);font-size:.82em}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font:600 .98rem/1 var(--f-body);text-decoration:none;border:1px solid transparent;transition:transform .15s ease, background .15s ease}
 .btn:hover{transform:translateY(-1px)}
@@ -183,7 +183,7 @@ section{padding-block:clamp(64px,9vw,112px)}
 .plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
 .plan{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px}
 .plan.feat{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
-.plan .top-l{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:24px}
+.plan .top-l{display:flex;justify-content:space-between;align-items:center;gap:8px;height:32px;white-space:nowrap}
 .plan h3{font-size:1.3rem}
 .price{display:flex;align-items:baseline;gap:6px}
 .price b{font:500 2.4rem/1 var(--f-display);font-variant-numeric:tabular-nums}
@@ -297,7 +297,7 @@ footer em{font-family:var(--f-display)}
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Wat de auditor wil zien</p>
-        <h2 id="h-probleem">Een presentielijst bewijst dat iemand er was. Niet dat hij het weet.</h2>
+        <h2 id="h-probleem">Een presentielijst bewijst dat iemand er was.<br>Niet dat hij het weet.</h2>
         <p class="lede">ISO 27001 vraagt in clausule 7.2 en 7.3 en in maatregel A.6.3 om aantoonbare competentie en bewustwording. Meestal ligt daar een beleidsmap die niemand leest, en een algemene cursus over phishing.</p>
       </div>
       <div class="contrast">
@@ -327,7 +327,7 @@ footer em{font-family:var(--f-display)}
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Het platform</p>
-        <h2 id="h-demo">Elke vraag heeft een bron. Elke bron heeft een normeis.</h2>
+        <h2 id="h-demo">Elke vraag heeft een bron.<br>Elke bron heeft een normeis.</h2>
         <p class="lede">Zo ziet een organisatie in Sterrenborg eruit. Probeer de toetsvraag gerust.</p>
       </div>
       <div class="app" role="figure" aria-label="Voorbeeldweergave van het Sterrenborg-platform">
@@ -387,7 +387,7 @@ footer em{font-family:var(--f-display)}
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Hoe het werkt</p>
-        <h2 id="h-werking">Uw documenten erin. Aantoonbare kennis eruit.</h2>
+        <h2 id="h-werking">Uw documenten erin.<br>Aantoonbare kennis eruit.</h2>
       </div>
       <div class="steps">
         <div class="step"><h3>Inladen</h3><p>U uploadt beleid, procedures en presentaties als PDF, Word of PowerPoint, en kiest de norm.</p></div>
@@ -449,12 +449,12 @@ footer em{font-family:var(--f-display)}
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Pakketten</p>
-        <h2 id="h-pakketten">Begin gratis. Upgrade als u erop vertrouwt.</h2>
+        <h2 id="h-pakketten">Begin gratis.<br>Upgrade als u erop vertrouwt.</h2>
         <p class="lede">Prijzen per deelnemer per maand, bij een jaarcontract, exclusief btw.</p>
       </div>
       <div class="plans">
         <article class="plan free">
-          <div class="top-l"><h3>Scan</h3><span class="tag">Start hier</span></div>
+          <div class="top-l"><h3>Scan</h3><span class="tag">Lift-off!</span></div>
           <div class="price"><b>€0</b><span>voor altijd</span></div>
           <div class="meta"><span>1 norm</span><span>Tot 10 documenten</span></div>
           <ul><li>Dekkingsoverzicht per normeis</li><li>1 voorbeeldmodule voor 10 deelnemers</li><li>Direct zien waar uw beleid tekortschiet</li></ul>
@@ -468,7 +468,7 @@ footer em{font-family:var(--f-display)}
           <a class="btn" href="#start">Kies Start</a>
         </article>
         <article class="plan feat">
-          <div class="top-l"><h3>Professional</h3><span class="tag">Meest gekozen</span></div>
+          <div class="top-l"><h3>Professional</h3><span class="tag">Supernova</span></div>
           <div class="price"><b>€6</b><span>per deelnemer<br>per maand</span></div>
           <div class="meta"><span>Tot 3 normen</span><span>Vanaf 50 deelnemers</span></div>
           <ul><li>Alles uit Start</li><li>Versiebeheer en hertraining</li><li>Reviewworkflow</li><li>Single sign-on</li><li>Leesportaal voor de auditor</li><li>Kwartaalcheck met ons team</li></ul>
@@ -500,13 +500,13 @@ footer em{font-family:var(--f-display)}
     <div class="wrap team">
       <div class="sec-head" style="margin:0">
         <p class="eyebrow">Wie staat erachter</p>
-        <h2 id="h-team">Het platform doet het werk. Ons team staat erachter.</h2>
+        <h2 id="h-team">Het platform doet het werk.<br>Ons team staat erachter.</h2>
         <p class="lede">Sterrenborg is gebouwd door drie IT- en businessveteranen uit Zwolle. Wij kennen de norm, wij kennen de techniek, en wij weten hoe het voelt als de auditor over twee weken komt.</p>
       </div>
       <div class="people">
         <div class="person"><h3>Erik Kramer</h3><span class="role">Lead developer. Bouwt het platform.</span><a href="https://www.linkedin.com/in/erik-kramer-a560951/" rel="noopener" target="_blank">LinkedIn</a></div>
-        <div class="person"><h3>Arjan Yspeert</h3><span class="role">Business analist. Vertaalt de norm naar uw praktijk.</span><a href="https://www.linkedin.com/in/yspeert/" rel="noopener" target="_blank">LinkedIn</a></div>
         <div class="person"><h3>Melvin de Vries</h3><span class="role">Technisch business analist. Stelt de vraag die de auditor ook stelt.</span><a href="https://www.linkedin.com/in/melvindevries/" rel="noopener" target="_blank">LinkedIn</a></div>
+        <div class="person"><h3>Arjan Yspeert</h3><span class="role">Business analist. Vertaalt de norm naar uw praktijk.</span><a href="https://www.linkedin.com/in/yspeert/" rel="noopener" target="_blank">LinkedIn</a></div>
       </div>
     </div>
   </section>
