@@ -1,0 +1,585 @@
+<title>Sterrenborg</title>
+<meta name="description" content="Sterrenborg maakt van uw informatiebeveiligingsbeleid korte trainingen en toetsen, en legt elk resultaat vast als bewijs voor de auditor. ISO 27001, NEN 7510 en BIO.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: een nachtelijke hemelband als opening (altijd donker), daarna een rustige, zakelijke pagina
+   op papier of inkt; goud is voorbehouden aan sterren en aan wat af is. */
+:root{
+  --night:#0F1628; --night-2:#18223A; --night-ink:#E9ECF3; --night-muted:#A3ADC4;
+  --bg:#F4F5F8; --surface:#FFFFFF; --ink:#141B2E; --muted:#556079; --line:#DCE0E9;
+  --gold:#B8862A; --gold-text:#8A6318; --gold-soft:#F5EBD6; --ok:#2F7A55; --warn:#A5621B;
+  --f-display:"Spectral", Georgia, "Times New Roman", serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-motto:"Cinzel", "Trajan Pro", Georgia, serif;
+  --wrap:1120px; --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1120; --surface:#141B2E; --ink:#E9ECF3; --muted:#9AA3BA; --line:#263049;
+  --gold:#E3B24A; --gold-text:#E9B949; --gold-soft:#2A2718; --ok:#5DBB8A; --warn:#E0A05A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1120; --surface:#141B2E; --ink:#E9ECF3; --muted:#9AA3BA; --line:#263049;
+  --gold:#E3B24A; --gold-text:#E9B949; --gold-soft:#2A2718; --ok:#5DBB8A; --warn:#E0A05A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.9rem,3.2vw,2.6rem);letter-spacing:-.01em}
+h3{font-size:1.28rem}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+.eyebrow{font:500 .76rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text)}
+.lede{font-size:1.12rem;color:var(--muted);max-width:62ch}
+section{padding-block:clamp(64px,9vw,112px)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:720px}
+.mono{font-family:var(--f-mono);font-size:.82em}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font:600 .98rem/1 var(--f-body);text-decoration:none;border:1px solid transparent;transition:transform .15s ease, background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:#E9B949;color:#141B2E}
+.btn-gold:hover{background:#F2C75E}
+.btn-ghost{border-color:rgba(233,236,243,.35);color:var(--night-ink)}
+.btn-ghost:hover{background:rgba(233,236,243,.08)}
+
+/* Kop */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(15,22,40,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--night-ink);border-bottom:1px solid rgba(233,236,243,.08)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:500 1.35rem/1 var(--f-display)}
+.brand svg{width:54px;height:auto;flex:none}
+.nav{display:flex;gap:26px;align-items:center;font-size:.93rem}
+.nav a{text-decoration:none;color:var(--night-muted)}
+.nav a:hover{color:var(--night-ink)}
+.nav .btn{padding:10px 16px;font-size:.88rem;color:#141B2E}
+@media (max-width:860px){.nav a:not(.btn){display:none}}
+
+/* Hero: hemelband */
+.hero{background:radial-gradient(120% 90% at 70% 0%, var(--night-2) 0%, var(--night) 60%);color:var(--night-ink);position:relative;overflow:hidden;padding-block:clamp(56px,8vw,96px) clamp(48px,7vw,80px)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;display:grid;gap:28px}
+.motto{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.motto b{font:500 clamp(.9rem,1.5vw,1.05rem)/1.2 var(--f-motto);letter-spacing:.32em;color:#E9B949;font-weight:500}
+.motto i{font:italic 400 1.02rem/1.2 var(--f-display);color:var(--night-muted)}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5rem);font-weight:400;letter-spacing:-.02em;max-width:14ch}
+.hero h1 em{font-style:italic;color:#F2D38C}
+.hero .lede{color:var(--night-muted);font-size:clamp(1.05rem,1.6vw,1.22rem)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero .small{font-size:.88rem;color:var(--night-muted)}
+.sky{margin-top:18px;max-width:880px}
+.sky svg{width:100%;height:auto;display:block;overflow:visible}
+.sky .l{stroke:#E9ECF3;stroke-opacity:.28;stroke-width:1;fill:none}
+.sky .s{fill:#E9B949;opacity:.28;transition:opacity .6s ease, filter .6s ease}
+.sky .s.on{opacity:1;filter:drop-shadow(0 0 6px rgba(233,185,73,.7))}
+.sky text{font:500 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;fill:var(--night-muted)}
+.sky text.n{font:italic 400 13px var(--f-display);letter-spacing:0;text-transform:none;fill:#E9B949}
+@media (max-width:600px){.sky text{font-size:19px;letter-spacing:.06em}.sky text.n{font-size:21px}}
+
+/* Probleem */
+.contrast{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.contrast > div{padding:30px;display:grid;gap:14px;align-content:start}
+.contrast > div + div{border-left:1px solid var(--line)}
+.contrast h3{font-size:1.15rem}
+.contrast ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.contrast li{display:grid;grid-template-columns:18px 1fr;gap:10px;color:var(--muted)}
+.contrast li::before{content:"";width:8px;height:8px;border-radius:50%;margin-top:.6em;background:var(--line)}
+.contrast .yes li{color:var(--ink)}
+.contrast .yes li::before{background:var(--gold)}
+@media (max-width:760px){.contrast{grid-template-columns:1fr}.contrast > div + div{border-left:0;border-top:1px solid var(--line)}}
+
+/* Productweergave */
+.app{border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 30px 60px -30px rgba(15,22,40,.35);overflow:hidden}
+.app-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.app-bar b{color:var(--ink);font-weight:600}
+.tag{display:inline-block;font:500 .72rem/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;background:var(--gold-soft);color:var(--gold-text)}
+.app-body{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.app-col{padding:24px;display:grid;gap:22px;align-content:start;min-width:0}
+.app-col + .app-col{border-left:1px solid var(--line)}
+@media (max-width:860px){.app-body{grid-template-columns:1fr}.app-col + .app-col{border-left:0;border-top:1px solid var(--line)}}
+.score{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.score .stars{display:flex;gap:4px}
+.score .stars svg{width:26px;height:26px}
+.score .stars .on{fill:var(--gold)} .score .stars .off{fill:none;stroke:var(--muted);stroke-opacity:.5;stroke-width:.1}
+.score p{font-size:.92rem;color:var(--muted)}
+.score strong{display:block;font:500 1.15rem/1.3 var(--f-display);color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kpi{border:1px solid var(--line);border-radius:8px;padding:12px}
+.kpi b{display:block;font:500 1.5rem/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.kpi span{font-size:.78rem;color:var(--muted)}
+@media (max-width:520px){.kpi b{font-size:1.15rem}.kpi{padding:10px}}
+.cov{display:grid;gap:12px}
+.cov h4,.qz h4{margin:0;font:600 .78rem/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.row{display:grid;grid-template-columns:62px minmax(0,1fr) 44px;gap:12px;align-items:center;font-size:.9rem}
+.row .mono{color:var(--muted)}
+.row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar{grid-column:2;height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:-6px}
+.bar i{display:block;height:100%;background:var(--gold)}
+.bar i.lo{background:var(--warn)}
+.row .pct{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.gap-note{font-size:.85rem;color:var(--warn);display:flex;gap:8px}
+.qz{display:grid;gap:14px}
+.qcard{border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px}
+.qcard .q{font:500 1.08rem/1.4 var(--f-display)}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:.92rem;cursor:pointer;background:transparent;color:var(--ink);text-align:left;font-family:inherit}
+.opt:hover{border-color:var(--gold)}
+.opt .k{font:500 .8rem/1.5 var(--f-mono);color:var(--muted)}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.opt.wrong{border-color:var(--warn);opacity:.7}
+.src{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px 14px;border-radius:8px;background:var(--bg);font-size:.84rem;color:var(--muted)}
+.src .ast{font:600 1.5rem/1 var(--f-display);color:var(--gold)}
+.src b{color:var(--ink);font-weight:600}
+.caption{margin-top:14px;font-size:.84rem;color:var(--muted)}
+
+/* Stappen */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s;border-top:1px solid var(--line)}
+.step{padding:26px 22px 0 0;display:grid;gap:10px;align-content:start;position:relative}
+.step::before{counter-increment:s;content:counter(s);font:italic 400 2.2rem/1 var(--f-display);color:var(--gold)}
+.step p{color:var(--muted);font-size:.96rem}
+@media (max-width:960px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}.step{padding-bottom:22px}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.after{margin-top:34px;padding:18px 22px;border-left:3px solid var(--gold);background:var(--surface);max-width:760px}
+
+/* Vijf sterren */
+.levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.lvl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;align-content:start}
+.lvl .st{display:flex;gap:3px}
+.lvl .st svg{width:15px;height:15px}
+.lvl .st .on{fill:var(--gold)} .lvl .st .off{fill:none;stroke:var(--muted);stroke-opacity:.5;stroke-width:.12}
+.lvl h3{font-size:1.15rem}
+.lvl p{font-size:.9rem;color:var(--muted)}
+@media (max-width:960px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}.lvl:last-child{grid-column:1/-1}}
+.fine{margin-top:22px;font-size:.88rem;color:var(--muted);max-width:760px}
+
+/* Normen */
+.norms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-block:1px solid var(--line)}
+.norm{padding:28px 26px 28px 0;display:grid;gap:10px;align-content:start}
+.norm + .norm{padding-left:26px;border-left:1px solid var(--line)}
+.norm .code{font:500 1.9rem/1 var(--f-display)}
+.norm p{color:var(--muted);font-size:.95rem}
+@media (max-width:820px){.norms{grid-template-columns:1fr}.norm + .norm{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+.nis2{margin-top:22px;font-size:.95rem;color:var(--muted);max-width:760px}
+.nis2 b{color:var(--ink)}
+
+/* Klantprofielen */
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.who article{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:8px;align-content:start}
+.who .mono{color:var(--gold-text)}
+.who p{color:var(--muted);font-size:.94rem}
+@media (max-width:900px){.who{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.who{grid-template-columns:1fr}}
+
+/* Pakketten */
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.plan.feat{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.plan .top-l{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:24px}
+.plan h3{font-size:1.3rem}
+.price{display:flex;align-items:baseline;gap:6px}
+.price b{font:500 2.4rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.price span{font-size:.84rem;color:var(--muted);line-height:1.3}
+.plan .meta{font-size:.85rem;color:var(--muted);border-block:1px solid var(--line);padding-block:10px;display:grid;gap:4px}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:.92rem;flex:1}
+.plan li{display:grid;grid-template-columns:14px 1fr;gap:10px}
+.plan li::before{content:"";width:10px;height:10px;margin-top:.45em;background:var(--gold);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.plan .btn{justify-content:center;border-color:var(--line);color:var(--ink)}
+.plan .btn:hover{border-color:var(--gold)}
+.plan.feat .btn,.plan.free .btn{background:#E9B949;border-color:#E9B949;color:#141B2E}
+@media (max-width:1000px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.plans{grid-template-columns:1fr}}
+.plan-notes{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:.9rem;color:var(--muted)}
+.examples{margin-top:28px;overflow-x:auto}
+.examples table{border-collapse:collapse;min-width:560px;width:100%;font-size:.92rem}
+.examples th,.examples td{text-align:left;padding:10px 14px 10px 0;border-bottom:1px solid var(--line)}
+.examples th{font-weight:600;color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.examples td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Team */
+.team{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px;align-items:start}
+.people{display:grid;gap:0;border-top:1px solid var(--line)}
+.person{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.person h3{font-size:1.2rem}
+.person .role{grid-column:1;font-size:.92rem;color:var(--muted)}
+.person a{grid-row:1/3;grid-column:2;align-self:center;font-size:.88rem;color:var(--gold-text);text-decoration:none}
+.person a:hover{text-decoration:underline}
+@media (max-width:820px){.team{grid-template-columns:1fr;gap:28px}}
+
+/* Afsluiter */
+.closing{background:var(--night);color:var(--night-ink);text-align:left}
+.closing .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:center}
+.closing h2{font-weight:400}
+.closing p{color:var(--night-muted)}
+.contact{display:grid;gap:14px;padding:26px;border:1px solid rgba(233,236,243,.14);border-radius:12px}
+.contact .addr{font:500 1.15rem/1.3 var(--f-mono);color:#F2D38C;user-select:all;word-break:break-all}
+.copy{justify-self:start;background:transparent;border:1px solid rgba(233,236,243,.3);color:var(--night-ink);padding:8px 14px;border-radius:999px;font:500 .85rem var(--f-body);cursor:pointer}
+@media (max-width:820px){.closing .wrap{grid-template-columns:1fr}}
+footer{background:var(--night);color:var(--night-muted);font-size:.84rem;border-top:1px solid rgba(233,236,243,.08)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:26px}
+footer em{font-family:var(--f-display)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.sky .s{transition:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="ster" d="M0,-1 L0.26,-0.36 L0.95,-0.31 L0.43,0.14 L0.59,0.81 L0,0.45 L-0.59,0.81 L-0.43,0.14 L-0.95,-0.31 L-0.26,-0.36 Z"/>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Sterrenborg, naar boven">
+      <svg viewBox="-8 -8 155 54" aria-hidden="true">
+        <polyline points="0,0 44.9,20.9 77.8,4.5 110.5,37.4 139.1,0" fill="none" stroke="currentColor" stroke-opacity=".45" stroke-width="1.6" stroke-linejoin="round"/>
+        <use href="#ster" fill="#E9B949" transform="translate(0,0) scale(6.4)"/>
+        <use href="#ster" fill="#E9B949" transform="translate(44.9,20.9) scale(8.2)"/>
+        <use href="#ster" fill="#E9B949" transform="translate(77.8,4.5) scale(10)"/>
+        <use href="#ster" fill="#E9B949" transform="translate(110.5,37.4) scale(9.7)"/>
+        <use href="#ster" fill="#E9B949" transform="translate(139.1,0) scale(9.6)"/>
+      </svg>
+      Sterrenborg
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <a href="#werking">Hoe het werkt</a>
+      <a href="#sterren">De vijf sterren</a>
+      <a href="#voor-wie">Voor wie</a>
+      <a href="#pakketten">Pakketten</a>
+      <a class="btn btn-gold" href="#start">Gratis scan</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="h-hero">
+    <canvas id="sterrenveld" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="motto"><b>PER ASPERA AD ASTRA</b><i>door weerstand naar de sterren</i></p>
+      <h1 id="h-hero">Van beleid naar <em>bewijs</em>.</h1>
+      <p class="lede">Sterrenborg vertaalt uw informatiebeveiligingsbeleid naar korte trainingen en toetsen voor al uw medewerkers. Elk resultaat verwijst terug naar uw beleid en de norm, zodat u de auditor bewijs laat zien in plaats van presentielijsten.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="#start">Start uw gratis scan</a>
+        <a class="btn btn-ghost" href="#werking">Zo werkt het</a>
+      </div>
+      <p class="small">Voor ISO 27001, NEN 7510 en de BIO. Binnen een dag weet u waar u staat.</p>
+      <div class="sky" aria-label="Het sterrenbeeld Cassiopeia: vijf sterren, vijf stappen naar een geborgde audit">
+        <svg viewBox="-40 -40 640 220" role="img">
+          <title>Cassiopeia, de vijf sterren van Sterrenborg</title>
+          <polyline class="l" points="0,0 179.6,83.6 311.2,18 442,149.6 556.4,0"/>
+          <g class="s" data-i="0"><use href="#ster" transform="translate(0,0) scale(16)"/></g>
+          <g class="s" data-i="1"><use href="#ster" transform="translate(179.6,83.6) scale(20.5)"/></g>
+          <g class="s" data-i="2"><use href="#ster" transform="translate(311.2,18) scale(25)"/></g>
+          <g class="s" data-i="3"><use href="#ster" transform="translate(442,149.6) scale(24.2)"/></g>
+          <g class="s" data-i="4"><use href="#ster" transform="translate(556.4,0) scale(24)"/></g>
+          <text x="0" y="-26" text-anchor="middle" class="n">Segin</text><text x="0" y="36" text-anchor="middle">1 In kaart</text>
+          <text x="179.6" y="54" text-anchor="middle" class="n">Ruchbah</text><text x="179.6" y="124" text-anchor="middle">2 Vertaald</text>
+          <text x="311.2" y="-16" text-anchor="middle" class="n">Navi</text><text x="311.2" y="58" text-anchor="middle">3 Getraind</text>
+          <text x="442" y="116" text-anchor="middle" class="n">Schedar</text><text x="442" y="190" text-anchor="middle">4 Getoetst</text>
+          <text x="556.4" y="-34" text-anchor="middle" class="n">Caph</text><text x="556.4" y="42" text-anchor="middle">5 Geborgd</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-probleem">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Wat de auditor wil zien</p>
+        <h2 id="h-probleem">Een presentielijst bewijst dat iemand er was. Niet dat hij het weet.</h2>
+        <p class="lede">ISO 27001 vraagt in clausule 7.2 en 7.3 en in maatregel A.6.3 om aantoonbare competentie en bewustwording. Meestal ligt daar een beleidsmap die niemand leest, en een algemene cursus over phishing.</p>
+      </div>
+      <div class="contrast">
+        <div>
+          <h3>Zoals het vaak gaat</h3>
+          <ul>
+            <li>Beleid van veertig pagina's op het intranet</li>
+            <li>Eén bewustwordingssessie per jaar, met presentielijst</li>
+            <li>Generieke e-learning die niets over uw eigen afspraken zegt</li>
+            <li>Twee weken voor de audit bewijs bij elkaar zoeken</li>
+          </ul>
+        </div>
+        <div class="yes">
+          <h3>Met Sterrenborg</h3>
+          <ul>
+            <li>Korte modules over uw eigen beleid, in gewone taal</li>
+            <li>Toetsvragen die verwijzen naar uw document en de normeis</li>
+            <li>Per medewerker vastgelegd: welke versie, welke score, wanneer</li>
+            <li>Het bewijs staat altijd klaar, ook als de auditor morgen komt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-demo" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Het platform</p>
+        <h2 id="h-demo">Elke vraag heeft een bron. Elke bron heeft een normeis.</h2>
+        <p class="lede">Zo ziet een organisatie in Sterrenborg eruit. Probeer de toetsvraag gerust.</p>
+      </div>
+      <div class="app" role="figure" aria-label="Voorbeeldweergave van het Sterrenborg-platform">
+        <div class="app-bar">
+          <span><b>Zorggroep De Linde</b> · ISO 27001 en NEN 7510</span>
+          <span class="tag">Voorbeeldorganisatie</span>
+        </div>
+        <div class="app-body">
+          <div class="app-col">
+            <div class="score">
+              <div class="stars" aria-label="3 van 5 sterren">
+                <svg viewBox="-1.1 -1.1 2.2 2.2"><use href="#ster" class="on"/></svg>
+                <svg viewBox="-1.1 -1.1 2.2 2.2"><use href="#ster" class="on"/></svg>
+                <svg viewBox="-1.1 -1.1 2.2 2.2"><use href="#ster" class="on"/></svg>
+                <svg viewBox="-1.1 -1.1 2.2 2.2"><use href="#ster" class="off"/></svg>
+                <svg viewBox="-1.1 -1.1 2.2 2.2"><use href="#ster" class="off"/></svg>
+              </div>
+              <p><strong>Getraind</strong>Volgende ster: 90% van de toetsen behaald</p>
+            </div>
+            <div class="kpis">
+              <div class="kpi"><b>214 / 236</b><span>medewerkers getraind</span></div>
+              <div class="kpi"><b>81%</b><span>toetsen behaald</span></div>
+              <div class="kpi"><b>12</b><span>modules actief</span></div>
+            </div>
+            <div class="cov">
+              <h4>Dekking per normeis</h4>
+              <div class="row"><span class="mono">A.5.10</span><span class="name">Aanvaardbaar gebruik</span><span class="pct">100%</span><span class="bar"><i style="width:100%"></i></span></div>
+              <div class="row"><span class="mono">A.5.15</span><span class="name">Toegangsbeveiliging</span><span class="pct">94%</span><span class="bar"><i style="width:94%"></i></span></div>
+              <div class="row"><span class="mono">A.6.3</span><span class="name">Bewustwording en training</span><span class="pct">91%</span><span class="bar"><i style="width:91%"></i></span></div>
+              <div class="row"><span class="mono">A.6.8</span><span class="name">Melden van incidenten</span><span class="pct">88%</span><span class="bar"><i style="width:88%"></i></span></div>
+              <div class="row"><span class="mono">A.8.13</span><span class="name">Back-up van informatie</span><span class="pct">42%</span><span class="bar"><i class="lo" style="width:42%"></i></span></div>
+              <p class="gap-note">Uw beleid zegt weinig over back-ups. Sterrenborg stelt een aanvulling voor.</p>
+            </div>
+          </div>
+          <div class="app-col qz">
+            <h4>Toetsvraag uit module 4 · Incidenten</h4>
+            <div class="qcard">
+              <p class="q">U ziet een onbekende USB-stick op de balie van de afdeling liggen. Wat doet u?</p>
+              <div class="opts" id="opts">
+                <button class="opt" type="button" id="opt-a" data-ok="0"><span class="k">A</span><span>Even aansluiten om te zien van wie hij is</span></button>
+                <button class="opt" type="button" id="opt-b" data-ok="1"><span class="k">B</span><span>Niet aansluiten, en melden bij de servicedesk binnen een uur</span></button>
+                <button class="opt" type="button" id="opt-c" data-ok="0"><span class="k">C</span><span>In de gevonden voorwerpen leggen</span></button>
+              </div>
+              <div class="src">
+                <span class="ast" aria-hidden="true">*</span>
+                <span><b>Bron:</b> Informatiebeveiligingsbeleid v3.2, §4.1 Melden van incidenten<br><b>Normeis:</b> <span class="mono">ISO 27001 A.6.8</span> · <span class="mono">NEN 7510</span></span>
+              </div>
+            </div>
+            <p class="caption">Gereviewd door M. Jansen, security officer, op 12 september. Deze vraag hoort bij beleidsversie 3.2.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="werking" aria-labelledby="h-werking" style="background:var(--surface)">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Hoe het werkt</p>
+        <h2 id="h-werking">Uw documenten erin. Aantoonbare kennis eruit.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Inladen</h3><p>U uploadt beleid, procedures en presentaties als PDF, Word of PowerPoint, en kiest de norm.</p></div>
+        <div class="step"><h3>Vertalen</h3><p>Sterrenborg maakt per onderwerp leerdoelen, korte lesblokken en toetsvragen, elk met bronverwijzing.</p></div>
+        <div class="step"><h3>Controleren</h3><p>Eerst een automatische controle op volledigheid, daarna uw eigen review. Wie wat goedkeurde, wordt vastgelegd.</p></div>
+        <div class="step"><h3>Trainen en toetsen</h3><p>Medewerkers volgen modules van een paar minuten en doen een kwis, op laptop of telefoon.</p></div>
+        <div class="step"><h3>Bewijzen</h3><p>Resultaten, versies en reviews staan klaar in een auditexport of in een leesportaal voor de auditor.</p></div>
+      </div>
+      <p class="after">Wijzigt uw beleid? Dan wordt de module bijgewerkt en ziet u meteen wie opnieuw getoetst moet worden.</p>
+    </div>
+  </section>
+
+  <section id="sterren" aria-labelledby="h-sterren">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">De vijf sterren</p>
+        <h2 id="h-sterren">Ster voor ster naar de audit</h2>
+        <p class="lede">Cassiopeia staat vanuit Nederland het hele jaar aan de hemel. Zo hoort aantoonbaar voldoen ook te werken: niet alleen in de week voor de audit, maar altijd.</p>
+      </div>
+      <div class="levels" id="levels"></div>
+      <p class="fine">De sterrenscore is onze eigen gereedheidsindicatie. Het is geen certificering: die geeft alleen een geaccrediteerde certificerende instelling af.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-normen" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Normen</p>
+        <h2 id="h-normen">Eén kennisbasis, drie normen</h2>
+      </div>
+      <div class="norms">
+        <div class="norm"><span class="code">ISO 27001</span><p>De internationale norm voor informatiebeveiliging. Vaak een eis van klanten in contracten en aanbestedingen.</p></div>
+        <div class="norm"><span class="code">NEN 7510</span><p>De Nederlandse uitwerking voor de zorg. Verplicht voor wie met patiëntgegevens werkt.</p></div>
+        <div class="norm"><span class="code">BIO</span><p>De Baseline Informatiebeveiliging Overheid, voor gemeenten, provincies, waterschappen en rijk.</p></div>
+      </div>
+      <p class="nis2"><b>Valt u onder de Cyberbeveiligingswet (NIS2)?</b> Veel organisaties gebruiken ISO 27001 als kapstok om daaraan te voldoen. Sterrenborg maakt het menselijke deel aantoonbaar.</p>
+    </div>
+  </section>
+
+  <section id="voor-wie" aria-labelledby="h-wie" style="background:var(--surface)">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Voor wie</p>
+        <h2 id="h-wie">Gemaakt voor organisaties van 25 tot 1.000 medewerkers</h2>
+        <p class="lede">Voor de security officer die het bewijs levert, de kwaliteitsmanager die de audit regelt, en de directie die geen verrassingen wil.</p>
+      </div>
+      <div class="who">
+        <article><span class="mono">NEN 7510</span><h3>Zorgorganisaties</h3><p>Veel medewerkers met wisselende digitale vaardigheid. Korte modules op de telefoon werken hier het best.</p></article>
+        <article><span class="mono">ISO 27001</span><h3>Software en SaaS</h3><p>Uw klanten eisen ISO 27001 in contracten en aanbestedingen. Certificering is een verkoopvoorwaarde.</p></article>
+        <article><span class="mono">ISO 27001 · NIS2</span><h3>IT-dienstverleners en MSP's</h3><p>U beheert de systemen van anderen en wordt op NIS2 aangesproken, door de wet of door uw klanten.</p></article>
+        <article><span class="mono">BIO</span><h3>Gemeenten en waterschappen</h3><p>De BIO is verplicht en de CISO heeft weinig tijd. Sterrenborg neemt het trainingswerk uit handen.</p></article>
+        <article><span class="mono">ISO 27001 · NIS2</span><h3>Maak- en voedingsbedrijven</h3><p>Grote afnemers stellen eisen, maar er is geen eigen securityafdeling. U heeft iets nodig dat gewoon werkt.</p></article>
+        <article><span class="mono">ISO 27001</span><h3>Accountancy, salaris en HR</h3><p>U werkt dagelijks met BSN's en financiële gegevens van klanten, die steeds vaker om bewijs vragen.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pakketten" aria-labelledby="h-pakketten">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Pakketten</p>
+        <h2 id="h-pakketten">Begin gratis. Upgrade als u erop vertrouwt.</h2>
+        <p class="lede">Prijzen per deelnemer per maand, bij een jaarcontract, exclusief btw.</p>
+      </div>
+      <div class="plans">
+        <article class="plan free">
+          <div class="top-l"><h3>Scan</h3><span class="tag">Start hier</span></div>
+          <div class="price"><b>€0</b><span>voor altijd</span></div>
+          <div class="meta"><span>1 norm</span><span>Tot 10 documenten</span></div>
+          <ul><li>Dekkingsoverzicht per normeis</li><li>1 voorbeeldmodule voor 10 deelnemers</li><li>Direct zien waar uw beleid tekortschiet</li></ul>
+          <a class="btn" href="#start">Start gratis scan</a>
+        </article>
+        <article class="plan">
+          <div class="top-l"><h3>Start</h3></div>
+          <div class="price"><b>€4</b><span>per deelnemer<br>per maand</span></div>
+          <div class="meta"><span>1 norm</span><span>Vanaf 25 deelnemers</span></div>
+          <ul><li>Onbeperkt modules en toetsen</li><li>Resultaten per medewerker</li><li>Auditexport</li><li>Ondersteuning per e-mail</li></ul>
+          <a class="btn" href="#start">Kies Start</a>
+        </article>
+        <article class="plan feat">
+          <div class="top-l"><h3>Professional</h3><span class="tag">Meest gekozen</span></div>
+          <div class="price"><b>€6</b><span>per deelnemer<br>per maand</span></div>
+          <div class="meta"><span>Tot 3 normen</span><span>Vanaf 50 deelnemers</span></div>
+          <ul><li>Alles uit Start</li><li>Versiebeheer en hertraining</li><li>Reviewworkflow</li><li>Single sign-on</li><li>Leesportaal voor de auditor</li><li>Kwartaalcheck met ons team</li></ul>
+          <a class="btn" href="#start">Kies Professional</a>
+        </article>
+        <article class="plan">
+          <div class="top-l"><h3>Audit Zeker</h3></div>
+          <div class="price"><b>€9</b><span>per deelnemer<br>per maand</span></div>
+          <div class="meta"><span>Onbeperkt normen</span><span>Vanaf 100 deelnemers</span></div>
+          <ul><li>Alles uit Professional</li><li>Inhoudelijke review door ons team</li><li>Pre-audit</li><li>Ondersteuning tijdens de audit</li><li>Vaste contactpersoon</li></ul>
+          <a class="btn" href="#start">Plan een gesprek</a>
+        </article>
+      </div>
+      <div class="plan-notes"><span>15% korting vanaf 250 deelnemers</span><span>25% korting vanaf 500 deelnemers</span><span>10% extra bij een tweejarig contract</span></div>
+      <div class="examples">
+        <table>
+          <thead><tr><th>Voorbeeld</th><th>Pakket</th><th>Per jaar</th></tr></thead>
+          <tbody>
+            <tr><td>Softwarebedrijf, 60 medewerkers</td><td>Start</td><td class="n">€2.880</td></tr>
+            <tr><td>Gemeente, 150 medewerkers</td><td>Professional</td><td class="n">€10.800</td></tr>
+            <tr><td>Zorgorganisatie, 350 medewerkers</td><td>Audit Zeker, met staffelkorting</td><td class="n">€32.130</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-team" style="background:var(--surface)">
+    <div class="wrap team">
+      <div class="sec-head" style="margin:0">
+        <p class="eyebrow">Wie staat erachter</p>
+        <h2 id="h-team">Het platform doet het werk. Ons team staat erachter.</h2>
+        <p class="lede">Sterrenborg is gebouwd door drie IT- en businessveteranen uit Zwolle. Wij kennen de norm, wij kennen de techniek, en wij weten hoe het voelt als de auditor over twee weken komt.</p>
+      </div>
+      <div class="people">
+        <div class="person"><h3>Erik Kramer</h3><span class="role">Lead developer. Bouwt het platform.</span><a href="https://www.linkedin.com/in/erik-kramer-a560951/" rel="noopener" target="_blank">LinkedIn</a></div>
+        <div class="person"><h3>Arjan Yspeert</h3><span class="role">Business analist. Vertaalt de norm naar uw praktijk.</span><a href="https://www.linkedin.com/in/yspeert/" rel="noopener" target="_blank">LinkedIn</a></div>
+        <div class="person"><h3>Melvin de Vries</h3><span class="role">Technisch business analist. Stelt de vraag die de auditor ook stelt.</span><a href="https://www.linkedin.com/in/melvindevries/" rel="noopener" target="_blank">LinkedIn</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start" class="closing" aria-labelledby="h-start">
+    <div class="wrap">
+      <div style="display:grid;gap:18px">
+        <p class="motto"><b>PER ASPERA AD ASTRA</b></p>
+        <h2 id="h-start">Weet binnen een dag waar u staat.</h2>
+        <p>Laad uw beleid en kies de norm. De gratis scan laat per normeis zien wat uw documenten afdekken en waar gaten zitten. Geen creditcard, geen verplichtingen.</p>
+      </div>
+      <div class="contact">
+        <p>Start uw scan of plan een kennismaking:</p>
+        <a class="addr" href="mailto:hallo@sterrenborg.nl" id="mail">hallo@sterrenborg.nl</a>
+        <button class="copy" type="button" id="copy">Kopieer adres</button>
+        <p style="font-size:.88rem">Sterrenborg · Zwolle · Hosting in Nederland</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="jaar">2026</span> Sterrenborg · <em>door weerstand naar de sterren</em></span>
+    <span>ISO 27001, NEN 7510 en BIO zijn normen van hun respectieve uitgevers. Sterrenborg certificeert niet.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero: de vijf sterren lichten een voor een op
+  var stars = document.querySelectorAll('.sky .s');
+  if (reduce) { stars.forEach(function(s){ s.classList.add('on'); }); }
+  else { stars.forEach(function(s, i){ setTimeout(function(){ s.classList.add('on'); }, 500 + i * 450); }); }
+
+  // Achtergrond: stil sterrenveld
+  var c = document.getElementById('sterrenveld');
+  function draw(){
+    var r = c.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+    c.width = r.width * d; c.height = r.height * d;
+    var x = c.getContext('2d'); x.scale(d, d);
+    var seed = 7; function rnd(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    var n = Math.round(r.width * r.height / 5200);
+    for (var i = 0; i < n; i++){
+      var px = rnd() * r.width, py = rnd() * r.height, s = rnd();
+      x.fillStyle = 'rgba(233,236,243,' + (0.08 + s * 0.35).toFixed(2) + ')';
+      x.beginPath(); x.arc(px, py, s < 0.9 ? 0.7 : 1.3, 0, 6.283); x.fill();
+    }
+  }
+  draw(); window.addEventListener('resize', draw);
+
+  // Vijf niveaus
+  var lv = [
+    ['In kaart','Norm en documenten geladen. U ziet per normeis wat uw beleid afdekt.'],
+    ['Vertaald','Trainingen en toetsen gemaakt en door u gereviewd.'],
+    ['Getraind','Medewerkers hebben de modules gevolgd.'],
+    ['Getoetst','Medewerkers hebben de toetsen behaald.'],
+    ['Geborgd','Bewijs actueel, versies bijgewerkt, hertraining op schema.']
+  ];
+  var star = '<svg viewBox="-1.1 -1.1 2.2 2.2"><use href="#ster" class="%c"/></svg>';
+  document.getElementById('levels').innerHTML = lv.map(function(l, i){
+    var s = ''; for (var k = 0; k < 5; k++) s += star.replace('%c', k <= i ? 'on' : 'off');
+    return '<article class="lvl"><div class="st" aria-label="' + (i + 1) + ' van 5 sterren">' + s + '</div><h3>' + l[0] + '</h3><p>' + l[1] + '</p></article>';
+  }).join('');
+
+  // Toetsvraag
+  document.getElementById('opts').addEventListener('click', function(e){
+    var b = e.target.closest('.opt'); if (!b) return;
+    this.querySelectorAll('.opt').forEach(function(o){
+      o.classList.remove('right', 'wrong');
+      if (o.dataset.ok === '1') o.classList.add('right'); else if (o === b) o.classList.add('wrong');
+    });
+  });
+
+  // Kopieer e-mailadres
+  document.getElementById('copy').addEventListener('click', function(){
+    var btn = this, a = document.getElementById('mail').textContent;
+    function sel(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Geselecteerd, kopieer met Ctrl+C'; }
+    try { navigator.clipboard.writeText(a).then(function(){ btn.textContent = 'Gekopieerd'; }, sel); } catch(err){ sel(); }
+  });
+
+  document.getElementById('jaar').textContent = new Date().getFullYear();
+})();
+</script>
